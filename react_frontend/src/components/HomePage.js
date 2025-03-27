@@ -13,7 +13,7 @@ const HomePage = () => {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("darkMode") === "enabled"
   );
-  // const [previousResults, setPreviousResults] = useState([]);
+  const [previousResults, setPreviousResults] = useState([]);
   const [tests, setTests] = useState([]);
   const [chatbotOpen, setChatbotOpen] = useState(false); // Chatbot popup state
 
