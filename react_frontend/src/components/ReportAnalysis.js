@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import styles from "../reportAnalysis.css";
+import styles from "../reportAnalysis.css";
 import { FaUpload, FaFileAlt } from "react-icons/fa";
 // import { Link } from "react-router-dom";
 
@@ -38,7 +38,7 @@ const ReportAnalysis = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post("https://gdg-pirates-xz8u.onrender.com/ReportUpload", formData, {
+      const response = await axios.post("http://127.0.0.1:5000//ReportUpload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
       });

@@ -1,6 +1,6 @@
 import React from "react";
-//import '../Home.css'
-// import styles from"../Test.css"; 
+import '../Home.css'
+import styles from"../Test.css"; 
 import  { useState } from "react";
 
 const Test = () => {
