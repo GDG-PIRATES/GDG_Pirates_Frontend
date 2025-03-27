@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import styles from "../reportAnalysis.css";
+// import styles from "../reportAnalysis.css";
 import { FaUpload, FaFileAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const ReportAnalysis = () => {
   const [file, setFile] = useState(null);

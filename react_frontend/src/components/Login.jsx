@@ -9,7 +9,6 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import "../Login.css";
-// import "../App.css";
 import { Loader2 } from "lucide-react"; 
 
 const Login = () => {
