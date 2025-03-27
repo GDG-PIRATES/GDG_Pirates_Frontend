@@ -57,7 +57,7 @@ const Login = () => {
         uid: userCredential.user.uid, // Firebase UID
       };
 
-      await axios.post("http://127.0.0.1:5000/check", userData);
+      await axios.post("https://gdg-pirates-backend.onrender.com/check", userData);
       navigate("/home");
     } catch (error) {
       console.error("Auth Error:", error.message);
