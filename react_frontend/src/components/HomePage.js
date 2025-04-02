@@ -68,7 +68,8 @@ const HomePage = () => {
   useEffect(() => {
     const fetchHealthNews = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/news");
+        const response = await axios.get("https://gdg-pirates-backend.onrender.com/news");
+        // const response = await axios.get("http://127.0.0.1:5000/news");
         console.log(response.data)
         console.log(response.data.articles)
         if (response.data && response.data.articles) {

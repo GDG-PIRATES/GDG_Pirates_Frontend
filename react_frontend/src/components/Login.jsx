@@ -28,8 +28,8 @@ const Login = () => {
         uid: result.user.uid, // Firebase UID
       };
 
-      // await axios.post("https://gdg-pirates-backend.onrender.com/check", userData);
-      await axios.post("http://127.0.0.1:5000/check", userData);
+      await axios.post("https://gdg-pirates-backend.onrender.com/check", userData);
+      // await axios.post("http://127.0.0.1:5000/check", userData);
       navigate("/home"); // Redirect after success
     } catch (error) {
       console.error("Google Login Error:", error);
