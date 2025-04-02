@@ -38,7 +38,8 @@ const ReportAnalysis = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post("https://gdg-pirates-backend.onrender.com/ReportUpload", formData, {
+      // const response = await axios.post("https://gdg-pirates-backend.onrender.com/ReportUpload", formData, {
+      const response = await axios.post("http://127.0.0.1:5000/ReportUpload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
       });
@@ -64,8 +65,8 @@ const ReportAnalysis = () => {
         <h2 className="logo">DetectX</h2>
         <ul>
           <li><a href="/home">Home</a></li>
-          <li><a href="#">Wellness Guide</a></li>
-          <li><a href="#">Profile</a></li>
+          <li><a href="/wellness">Wellness Guide</a></li>
+          <li><a href="/profile">Profile</a></li>
           <li><a href="#">About Us</a></li>
           <li>
             <a href="/">Logout</a>

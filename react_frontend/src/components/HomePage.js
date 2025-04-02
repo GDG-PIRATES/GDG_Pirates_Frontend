@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import "../Home.css";
+import axios from "axios";
 import { FaRobot } from "react-icons/fa";
 
 const HomePage = () => {
@@ -67,14 +68,19 @@ const HomePage = () => {
   useEffect(() => {
     const fetchHealthNews = async () => {
       try {
-        const apiurl = process.env.REACT_APP_NEWS_API_URL;
-        const response = await fetch(apiurl);
-        const data = await response.json();
-        const filteredArticles = data.articles
-          .filter((article) => article.urlToImage)
-          .slice(0, 20);
+        const response = await axios.get("http://127.0.0.1:5000/news");
+        console.log(response.data)
+        console.log(response.data.articles)
+        if (response.data && response.data.articles) {
+          // Filter articles that have images and limit to 10
+          const filteredArticles = response.data.articles
+            .filter((article) => article.urlToImage) // Ensure articles have images
+            .slice(0, 10); // Limit to 10 articles
 
-        setArticles(filteredArticles);
+          setArticles(filteredArticles);
+        } else {
+          console.error("No articles found in response.");
+        }
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -184,22 +190,27 @@ const HomePage = () => {
       {/* Health Articles Section */}
       <div className="articles-container">
         <h2 className="articles-heading">Latest Health News</h2>
-        <div className="articles-scroll">
-          {articles.map((article, index) => (
-            <div key={index} className="article-box">
-              <img
-                src={article.urlToImage}
-                alt="Article"
-                className="article-image"
-              />
-              <h3>{article.title}</h3>
-              <p>{article.description}</p>
-              <a href={article.url} target="_blank" rel="noopener noreferrer">
-                Read More
-              </a>
-            </div>
-          ))}
-        </div>
+
+        {articles.length > 0 ? (
+          <div className="articles-scroll">
+            {articles.map((article, index) => (
+              <div key={index} className="article-box">
+                <img
+                  src={article.urlToImage || "default-placeholder.jpg"} // Handle missing images
+                  alt={article.title || "Article Image"}
+                  className="article-image"
+                />
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
+                <a href={article.url} target="_blank" rel="noopener noreferrer">
+                  Read More
+                </a>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>We currently don't have the budget for a News API.</p>
+        )}
       </div>
     </div>
   );
