@@ -63,45 +63,23 @@ const HomePage = () => {
     setChatbotOpen(!chatbotOpen);
   };
 
-  const [articles, setArticles] = useState([]); // Store health articles
+  const [article, setArticle] = useState(null); // Store a single health article
 
   useEffect(() => {
     const fetchHealthNews = async () => {
       try {
-        const response = await axios.get(
-          "https://gdg-pirates-backend.onrender.com/news"
-        );
-        console.log(response);
-        if (response.data) {
-          let articles = [];
+        const response = await axios.get("http://127.0.0.1:5000/news");
+        console.log("Fetched News Response:", response.data);
 
-          // Extract main news article
-          if (response.data.newsUrl && response.data.images?.thumbnail) {
-            articles.push({
-              title: response.data.snippet,
-              url: response.data.newsUrl,
-              imageUrl: response.data.images.thumbnail,
-              publisher: response.data.publisher,
-            });
-          }
-
-          // Extract subnews articles if available
-          if (response.data.hasSubnews && response.data.subnews) {
-            const subnewsArticles = response.data.subnews
-              .map((sub) => ({
-                title: sub.title,
-                url: sub.newsUrl,
-                imageUrl: sub.images?.thumbnail,
-                publisher: sub.publisher,
-              }))
-              .filter((article) => article.imageUrl); // Ensure subnews have images
-
-            articles = [...articles, ...subnewsArticles];
-          }
-
-          setArticles(articles.slice(0, 20));
+        if (response.data.newsUrl && response.data.images?.thumbnail) {
+          setArticle({
+            title: response.data.snippet,
+            url: response.data.newsUrl,
+            imageUrl: response.data.images.thumbnail,
+            publisher: response.data.publisher,
+          });
         } else {
-          console.error("No valid data found in response.");
+          console.error("No valid article found in response.");
         }
       } catch (error) {
         console.error("Error fetching news:", error);
@@ -212,26 +190,21 @@ const HomePage = () => {
       {/* Health Articles Section */}
       <div className="articles-container">
         <h2 className="articles-heading">Latest Health News</h2>
-
-        {articles.length > 0 ? (
-          <div className="articles-scroll">
-            {articles.map((article, index) => (
-              <div key={index} className="article-box">
-                <img
-                  src={article.urlToImage}
-                  alt={article.title}
-                  className="article-image"
-                />
-                <h3>{article.title}</h3>
-                <p>{article.description}</p>
-                <a href={article.url} target="_blank" rel="noopener noreferrer">
-                  Read More
-                </a>
-              </div>
-            ))}
+        {article ? (
+          <div className="article-box">
+            <img
+              src={article.imageUrl}
+              alt={article.title}
+              className="article-image"
+            />
+            <h3>{article.title}</h3>
+            <p>{article.publisher}</p>
+            <a href={article.url} target="_blank" rel="noopener noreferrer">
+              Read More
+            </a>
           </div>
         ) : (
-          <p>We currently don't have the budget for a News API.</p>
+          <p>Loading news...</p>
         )}
       </div>
     </div>

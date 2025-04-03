@@ -9,6 +9,7 @@ import ReportAnalysis from "./components/ReportAnalysis";
 import GoogleLoginRedirect from "./components/GoogleLoginRedirect";
 import DiabetesPredictionForm from "./components/GetDetailsForDiabetesPrediction";
 import PredictionResult from "./components/PredictionResult";
+import EditProfile from "./components/EditProfile";
 import Profile from "./components/Profile";
 import Wellness from "./components/wellness";
 import { AuthProvider } from "./context/AuthContext";
@@ -38,7 +39,8 @@ const App = () => {
           <Route path="/reportAnalysis" element={<ProtectedRoute><ReportAnalysis /></ProtectedRoute>} />
           <Route path="/prediction" element={<ProtectedRoute><DiabetesPredictionForm /></ProtectedRoute>} />
           <Route path="/result" element={<ProtectedRoute><PredictionResult/></ProtectedRoute>} />
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
+          <Route path="/Profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
+          <Route path="/editProfile" element={<ProtectedRoute><EditProfile /></ProtectedRoute>}/>
           <Route path="/wellness" element={<ProtectedRoute><Wellness /></ProtectedRoute>}/>
         </Routes>
       </Router>
