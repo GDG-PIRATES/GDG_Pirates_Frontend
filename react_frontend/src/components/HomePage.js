@@ -16,7 +16,8 @@ const HomePage = () => {
   );
   const [previousResults, setPreviousResults] = useState([]);
   const [tests, setTests] = useState([]);
-  const [chatbotOpen, setChatbotOpen] = useState(false); // Chatbot popup state
+  const [chatbotOpen, setChatbotOpen] = useState(false);
+  const [articles, setArticles] = useState([]); // Store multiple health articles
 
   useEffect(() => {
     const storedResults =
@@ -63,31 +64,35 @@ const HomePage = () => {
     setChatbotOpen(!chatbotOpen);
   };
 
-  const [article, setArticle] = useState(null); // Store a single health article
-
   useEffect(() => {
     const fetchHealthNews = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/news");
+        const response = await axios.get("http://api.mediastack.com/v1/news", {
+          params: {
+            access_key: "bf809f10ea1a878c582dd2ba84bbcb05", 
+            categories: "health",
+            languages: "en",
+            limit: 50, 
+          },
+        });
+  
         console.log("Fetched News Response:", response.data);
-
-        if (response.data.newsUrl && response.data.images?.thumbnail) {
-          setArticle({
-            title: response.data.snippet,
-            url: response.data.newsUrl,
-            imageUrl: response.data.images.thumbnail,
-            publisher: response.data.publisher,
-          });
+  
+        if (response.data.data) {
+          const filteredArticles = response.data.data.filter((article) => article.image); // Only keep articles with images
+          setArticles(filteredArticles);
+          console.log("Filtered Articles:", filteredArticles); // Debugging
         } else {
-          console.error("No valid article found in response.");
+          console.error("No valid articles found in response.");
         }
       } catch (error) {
         console.error("Error fetching news:", error);
       }
     };
-
+  
     fetchHealthNews();
   }, []);
+  
 
   return (
     <div className="homepage-container">
@@ -187,28 +192,29 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
       {/* Health Articles Section */}
       <div className="articles-container">
-        <h2 className="articles-heading">Latest Health News</h2>
-        {article ? (
-          <div className="article-box">
-            <img
-              src={article.imageUrl}
-              alt={article.title}
-              className="article-image"
-            />
-            <h3>{article.title}</h3>
-            <p>{article.publisher}</p>
-            <a href={article.url} target="_blank" rel="noopener noreferrer">
-              Read More
-            </a>
-          </div>
-        ) : (
-          <p>Loading news...</p>
-        )}
-      </div>
+  <h2 className="articles-heading">Latest Health News</h2>
+  {articles.length > 0 ? (
+    <div className="articles-grid">
+      {articles.map((article, index) => (
+        <div key={index} className="article-box">
+          <img src={article.image} alt={article.title} className="article-image" />
+          <h3>{article.title}</h3>
+          <p>{article.source}</p>
+          <a href={article.url} target="_blank" rel="noopener noreferrer">
+            Read More
+          </a>
+        </div>
+      ))}
     </div>
-  );
-};
+  ) : (
+    <p>Loading news...</p>
+  )}
+</div>
+  </div>
+    );
+  }
 
 export default HomePage;
