@@ -69,24 +69,41 @@ const HomePage = () => {
     const fetchHealthNews = async () => {
       try {
         const response = await axios.get("https://gdg-pirates-backend.onrender.com/news");
-        // const response = await axios.get("http://127.0.0.1:5000/news");
-        // console.log(response.data)
-        // console.log(response.data.articles)
-        if (response.data && response.data.articles) {
-          // Filter articles that have images and limit to 10
-          const filteredArticles = response.data.articles
-            .filter((article) => article.urlToImage) // Ensure articles have images
-            .slice(0, 10); // Limit to 10 articles
-
-          setArticles(filteredArticles);
+        
+        if (response.data) {
+          let articles = [];
+          
+          // Extract main news article
+          if (response.data.newsUrl && response.data.images?.thumbnail) {
+            articles.push({
+              title: response.data.snippet,
+              url: response.data.newsUrl,
+              imageUrl: response.data.images.thumbnail,
+              publisher: response.data.publisher,
+            });
+          }
+          
+          // Extract subnews articles if available
+          if (response.data.hasSubnews && response.data.subnews) {
+            const subnewsArticles = response.data.subnews.map(sub => ({
+              title: sub.title,
+              url: sub.newsUrl,
+              imageUrl: sub.images?.thumbnail,
+              publisher: sub.publisher,
+            })).filter(article => article.imageUrl); // Ensure subnews have images
+            
+            articles = [...articles, ...subnewsArticles];
+          }
+          
+          setArticles(articles.slice(0, 20));
         } else {
-          console.error("No articles found in response.");
+          console.error("No valid data found in response.");
         }
       } catch (error) {
         console.error("Error fetching news:", error);
       }
     };
-
+  
     fetchHealthNews();
   }, []);
 
