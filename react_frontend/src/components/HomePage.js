@@ -68,11 +68,13 @@ const HomePage = () => {
   useEffect(() => {
     const fetchHealthNews = async () => {
       try {
-        const response = await axios.get("https://gdg-pirates-backend.onrender.com/news");
-        console.log(response)
+        const response = await axios.get(
+          "https://gdg-pirates-backend.onrender.com/news"
+        );
+        console.log(response);
         if (response.data) {
           let articles = [];
-          
+
           // Extract main news article
           if (response.data.newsUrl && response.data.images?.thumbnail) {
             articles.push({
@@ -82,19 +84,21 @@ const HomePage = () => {
               publisher: response.data.publisher,
             });
           }
-          
+
           // Extract subnews articles if available
           if (response.data.hasSubnews && response.data.subnews) {
-            const subnewsArticles = response.data.subnews.map(sub => ({
-              title: sub.title,
-              url: sub.newsUrl,
-              imageUrl: sub.images?.thumbnail,
-              publisher: sub.publisher,
-            })).filter(article => article.imageUrl); // Ensure subnews have images
-            
+            const subnewsArticles = response.data.subnews
+              .map((sub) => ({
+                title: sub.title,
+                url: sub.newsUrl,
+                imageUrl: sub.images?.thumbnail,
+                publisher: sub.publisher,
+              }))
+              .filter((article) => article.imageUrl); // Ensure subnews have images
+
             articles = [...articles, ...subnewsArticles];
           }
-          
+
           setArticles(articles.slice(0, 20));
         } else {
           console.error("No valid data found in response.");
@@ -103,7 +107,7 @@ const HomePage = () => {
         console.error("Error fetching news:", error);
       }
     };
-  
+
     fetchHealthNews();
   }, []);
 
@@ -214,8 +218,8 @@ const HomePage = () => {
             {articles.map((article, index) => (
               <div key={index} className="article-box">
                 <img
-                  src={article.urlToImage || "default-placeholder.jpg"} // Handle missing images
-                  alt={article.title || "Article Image"}
+                  src={article.urlToImage}
+                  alt={article.title}
                   className="article-image"
                 />
                 <h3>{article.title}</h3>
