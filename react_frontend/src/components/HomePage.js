@@ -69,7 +69,7 @@ const HomePage = () => {
     const fetchHealthNews = async () => {
       try {
         const response = await axios.get("https://gdg-pirates-backend.onrender.com/news");
-        
+        console.log(response)
         if (response.data) {
           let articles = [];
           
