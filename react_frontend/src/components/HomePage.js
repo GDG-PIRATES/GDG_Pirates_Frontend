@@ -67,14 +67,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchHealthNews = async () => {
       try {
-        const response = await axios.get("http://api.mediastack.com/v1/news", {
-          params: {
-            access_key: "bf809f10ea1a878c582dd2ba84bbcb05", 
-            categories: "health",
-            languages: "en",
-            limit: 50, 
-          },
-        });
+        const response = await axios.get("https://gdg-pirates-backend.onrender.com/news");
   
         console.log("Fetched News Response:", response.data);
   
