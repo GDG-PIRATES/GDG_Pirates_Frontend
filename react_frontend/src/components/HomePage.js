@@ -71,10 +71,10 @@ const HomePage = () => {
   
         console.log("Fetched News Response:", response.data);
   
-        if (response.data.data) {
-          const filteredArticles = response.data.data.filter((article) => article.image); // Only keep articles with images
+        if (response.data.articles) {
+          const filteredArticles = response.data.articles.filter((article) => article.image); // Only keep articles with images
           setArticles(filteredArticles);
-          console.log("Filtered Articles:", filteredArticles); // Debugging
+          console.log("Filtered Articles:", filteredArticles);
         } else {
           console.error("No valid articles found in response.");
         }
