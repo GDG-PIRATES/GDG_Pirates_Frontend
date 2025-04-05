@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import AboutUs from "./components/AboutUs";
 import Login from "./components/Login";
 import Home from "./components/HomePage";
 import Test from "./components/Test";
@@ -33,6 +34,7 @@ const App = () => {
         <Routes>
           <Route path="/underMaintenance" element={<UnderMaintenance />} />
           <Route path="/" element={<Login />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/loading" element={<GoogleLoginRedirect />} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/test" element={<ProtectedRoute><Test /></ProtectedRoute>} />
