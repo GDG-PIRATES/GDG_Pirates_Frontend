@@ -75,7 +75,7 @@ const HomePage = () => {
         console.log("Fetched News Response:", response.data);
   
         if (response.data.articles) {
-          const filteredArticles = response.data.articles.filter((article) => article.image); // Only keep articles with images
+          const filteredArticles = response.data.articles.filter((article) => article.image); 
           setArticles(filteredArticles);
           console.log("Filtered Articles:", filteredArticles);
         } else {
