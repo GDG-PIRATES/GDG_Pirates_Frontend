@@ -68,7 +68,7 @@ const AboutUs = () => {
   <br /><br />
   <em>Join us in revolutionizing healthcare, one AI-powered insight at a time.</em>
   <br /><br />
-  <strong>Team HealthAI</strong><br />
+  <strong>Team GDG Pirates</strong><br />
   Powered by innovation. Driven by impact.
 </>
 
