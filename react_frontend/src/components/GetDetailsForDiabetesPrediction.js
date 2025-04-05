@@ -75,19 +75,19 @@ const DiabetesPredictionForm = () => {
 
   const tooltips = {
     A1Cresult_8:
-      "It checks if your average blood sugar is too high (above 8%). (0 = No, 1 = Yes)",
-    A1Cresult_Norm: "Checks your Blood HbA Level (0 = No, 1 = Yes)",
+      "Has your average blood sugar risen to a high level (above 8%). (0 = No, 1 = Yes)",
+    A1Cresult_Norm: "Have you ever had your Blood HbA1c level checked? (0 = No, 1 = Yes)",
     max_glu_serum_300:
-      "It checks if your blood sugar ever went over 300 mg/dL (0 = No, 1 = Yes)",
+      "Has your blood sugar ever gone over 300 mg/dL? (0 = No, 1 = Yes)",
     max_glu_serum_Norm:
-      "Shows if your blood sugar level is within the normal range. (0 = No, 1 = Yes)",
-    num_medications: "It counts how many diabetes medicines you are taking.",
-    num_lab_procedures: "How many lab tests you've undergone.",
-    number_inpatient: "How many times you've been admitted to a hospital.",
+      "Is your blood sugar level within the normal range? (0 = No, 1 = Yes)",
+    num_medications: "How many diabetes medications are you currently taking?.",
+    num_lab_procedures: "How many lab tests have you undergone?",
+    number_inpatient: "How many times you've been admitted to a hospital?",
     age: "Your age in years.",
-    time_in_hospital: "Days stayed in hospital(last visit).",
+    time_in_hospital: "How many days were you in the hospital last time?",
     number_diagnoses:
-      "Total number of health conditions you have been diagnosed with (e.g., high blood pressure, heart disease).",
+      "How many health conditions have you been diagnosed with?(e.g., high blood pressure, heart disease).",
   };
 
   return (
