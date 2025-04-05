@@ -38,7 +38,7 @@ const Wellness = () => {
           <li><a href="/home">Home</a></li>
           <li><a href="/wellness">Wellness Guide</a></li>
           <li><a href="/profile">Profile</a></li>
-          <li><a href="#">About Us</a></li>
+          <li><a href="/about">About Us</a></li>
         </ul>
        
       </nav>

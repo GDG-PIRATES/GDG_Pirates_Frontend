@@ -63,7 +63,7 @@ const Profile = () => {
             <a href="/profile">Profile</a>
           </li>
           <li>
-            <a href="#">About Us</a>
+            <a href="/about">About Us</a>
           </li>
         </ul>
       </nav>

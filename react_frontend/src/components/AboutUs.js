@@ -14,7 +14,7 @@ const teamMembers = [
     image: member1,
   },
   {
-    name: "Pranava Pai",
+    name: "Pranava Pai N",
     role: "AI Engineer",
     description: "Pranava specializes in machine learning and AI, making our platform smarter every day.",
     image: member2,
@@ -37,7 +37,6 @@ const AboutUs = () => {
   return (
     <div className="about-container">
         <Navbar />
-      {/* PROJECT DESCRIPTION SECTION */}
       <section className="project-section">
         <h1>About the Project</h1>
         <p>
@@ -49,18 +48,18 @@ const AboutUs = () => {
   <strong>Our Mission</strong><br />
   1 in 10 adults worldwide live with diabetes, yet many remain undiagnosed until complications arise. Similarly, medical reports filled with jargon leave patients confused. We solve these challenges with:
   <ul>
-    <li><strong>AI-Driven Predictions:</strong> Our XGBoost model (80% accuracy) assesses diabetes risk early using simple user inputs.</li>
-    <li><strong>Plain-Language Reports:</strong> Upload lab results, and Google Gemini AI instantly translates them into easy-to-understand insights.</li>
-    <li><strong>Smart Nutrition Tracking:</strong> Search any food with the NutritionX API to monitor calories and macros effortlessly.</li>
+    <li><strong>AI-Driven Predictions:</strong> Our AI model (80% accuracy) assesses diabetes risk early using simple user inputs.</li>
+    <li><strong>Plain-Language Reports:</strong> Upload lab results, and our model instantly translates them into easy-to-understand insights.</li>
+    <li><strong>Smart Nutrition Tracking:</strong> Search any food with our smart wellness guide to monitor calories and macros effortlessly.</li>
   </ul>
 
   <br />
   <strong>Why Choose Us?</strong><br />
   Unlike generic health apps, DetectX combines cutting-edge AI with user-centric design:
   <ul>
-    <li>✅ Google Gemini-powered medical simplification</li>
-    <li>✅ Actionable health insights (not just raw data)</li>
-    <li>✅ All-in-one platform (predictions, reports, nutrition)</li>
+    <li>AI-Powered medical simplification</li>
+    <li>Actionable health insights (not just raw data)</li>
+    <li>All-in-one platform (predictions, reports, nutrition)</li>
   </ul>
 
   <br />

@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import "../Home.css";
 import axios from "axios";
 import { FaRobot } from "react-icons/fa";
+import { handleLogout } from "./logout";
+import { signOut } from "firebase/auth";
+
 
 const HomePage = () => {
   const [user] = useAuthState(auth);
@@ -17,7 +20,7 @@ const HomePage = () => {
   const [previousResults, setPreviousResults] = useState([]);
   const [tests, setTests] = useState([]);
   const [chatbotOpen, setChatbotOpen] = useState(false);
-  const [articles, setArticles] = useState([]); // Store multiple health articles
+  const [articles, setArticles] = useState([]); 
 
   useEffect(() => {
     const storedResults =
@@ -86,6 +89,16 @@ const HomePage = () => {
     fetchHealthNews();
   }, []);
   
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); 
+      localStorage.removeItem("previousResults"); 
+      localStorage.removeItem("darkMode");
+      navigate("/"); 
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <div className="homepage-container">
@@ -105,7 +118,7 @@ const HomePage = () => {
             <a href="/about">About Us</a>
           </li>
           <li>
-            <a href="/">Logout</a>
+            <a href="/" onClick={handleLogout}>Logout</a>
           </li>
         </ul>
         <div className="nav-icons">

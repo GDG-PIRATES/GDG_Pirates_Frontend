@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../reportAnalysis.css";
 import { FaUpload, FaFileAlt } from "react-icons/fa";
+import { handleLogout } from "./logout";
 // import { Link } from "react-router-dom";
 
 const ReportAnalysis = () => {
@@ -67,9 +68,9 @@ const ReportAnalysis = () => {
           <li><a href="/home">Home</a></li>
           <li><a href="/wellness">Wellness Guide</a></li>
           <li><a href="/profile">Profile</a></li>
-          <li><a href="#">About Us</a></li>
+          <li><a href="/about">About Us</a></li>
           <li>
-            <a href="/">Logout</a>
+            <a href="/" onClick={handleLogout}>Logout</a>
           </li>
         </ul>
       </nav>

@@ -7,6 +7,7 @@ import "../predictForm.css";
 import "../Home.css";
 import "../App.css";
 import "../result.css";
+import { handleLogout } from "./logout";
 
 const DiabetesPredictionForm = () => {
   const [formData, setFormData] = useState({
@@ -62,8 +63,8 @@ const DiabetesPredictionForm = () => {
       }
 
       const predictData = { ...formData, email: user.email };
-      const response = await axios.post("https://gdg-pirates-backend.onrender.com/predictDiabetes", predictData);
-      // const response = await axios.post("http://127.0.0.1:5000/predictDiabetes",predictData);
+      const response = await axios.post("http://127.0.0.1:5000/predictDiabetes",predictData);
+      // const response = await axios.post("https://gdg-pirates-backend.onrender.com/predictDiabetes", predictData);
 
       localStorage.setItem("predictionData", JSON.stringify(response.data));
       navigate("/result");
@@ -104,10 +105,10 @@ const DiabetesPredictionForm = () => {
             <a href="/profile">Profile</a>
           </li>
           <li>
-            <a href="#">About Us</a>
+            <a href="/about">About Us</a>
           </li>
           <li>
-            <a href="/">Logout</a>
+            <a href="/" onClick={handleLogout}>Logout</a>
           </li>
         </ul>
       </nav>

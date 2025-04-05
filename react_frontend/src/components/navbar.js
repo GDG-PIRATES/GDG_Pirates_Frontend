@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom"; // This lets you navigate between pages
+import { Link } from "react-router-dom"; 
 import "../styles/Navbar.css"; 
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   return (
@@ -8,9 +9,9 @@ const Navbar = () => {
       <div className="logo">DetectX</div>
       <ul className="nav-links">
         <li><Link to="/home">Home</Link></li>
-        <li><Link to="/about">About Us</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/wellness">Wellness Guide</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to="/" onClick={signOut}>Logout</Link></li>
       </ul>
     </nav>
   );
