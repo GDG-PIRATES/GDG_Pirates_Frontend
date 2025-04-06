@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom"; 
 import "../styles/Navbar.css"; 
 import { signOut } from "firebase/auth";
+import { handleLogout } from "./logout";
 
 const Navbar = () => {
   return (
@@ -11,7 +12,7 @@ const Navbar = () => {
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/wellness">Wellness Guide</Link></li>
         <li><Link to="/profile">Profile</Link></li>
-        <li><Link to="/" onClick={signOut}>Logout</Link></li>
+        <li><Link to="/" onClick={handleLogout}>Logout</Link></li>
       </ul>
     </nav>
   );
