@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
 import "../styles/Navbar.css"; 
-import { signOut } from "firebase/auth";
 import { handleLogout } from "./logout";
 
 const Navbar = () => {
